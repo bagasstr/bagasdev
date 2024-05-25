@@ -21,10 +21,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${myFont.className} content`}>
-        <ThemeProvider
-          attribute='class'
-          disableTransitionOnChange
-          enableSystem={true}>
+        <ThemeProvider attribute='class' enableSystem={true}>
           <Navbar />
           {children}
         </ThemeProvider>
