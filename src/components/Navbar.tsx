@@ -33,7 +33,7 @@ const Navbar = () => {
               <li key={index}>
                 <Link href={item.link} passHref>
                   {checkPath === item.link ? (
-                    <span className='border-b-2 border-black sm:text-lg sm:font-semibold lg:text-xl pb-1'>
+                    <span className='border-b-2 border-black dark:border-white sm:text-lg sm:font-semibold lg:text-xl pb-1'>
                       {item.name}
                     </span>
                   ) : (
