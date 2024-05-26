@@ -1,40 +1,48 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const handlerLink: () => void = () => {
-    const links = document.querySelectorAll("h1");
-    const linkEl = document.querySelector("h1");
-    linkEl?.classList.add("active");
-    links.forEach((link) => {
-      link.addEventListener("click", () => {
-        document.querySelector(".active")?.classList.remove("active");
-        link?.classList.add("active");
-      });
-    });
-  };
-  useEffect(() => {
-    handlerLink();
-    return () => {
-      handlerLink();
-    };
-  }, []);
+  const pathName = usePathname();
+  const filterPath = pathName?.split("/").filter((item) => item);
+
+  const checkPath = "/" + (filterPath.length > 0 ? filterPath[0] : "");
+
+  const dataLink = [
+    {
+      link: "/",
+      name: "Home",
+    },
+    {
+      link: "/projects",
+      name: "Projects",
+    },
+    {
+      link: "/about",
+      name: "About",
+    },
+  ];
+
   return (
     <>
       <div className='py-8'>
         <div className=''>
-          <ul className='flex items-center justify-center gap-x-8'>
-            <Link href={""} id='link'>
-              <h1 className=''>Home</h1>
-            </Link>
-            <Link href={""} id='link'>
-              <h1 className=''>Projects</h1>
-            </Link>
-            <Link href={""} id='link'>
-              <h1 className=''>About</h1>
-            </Link>
+          <ul className='flex items-center justify-center sm:gap-x-8 lg:gap-10'>
+            {dataLink.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.link}
+                  passHref
+                  className={`${
+                    checkPath === item.link
+                      ? "after:content-[''] after:w-full after:rounded-full after:h-[2px] after:block after:dark:bg-slate-50 after:bg-slate-900"
+                      : ""
+                  } sm:text-lg sm:font-semibold lg:text-xl`}>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -4,7 +4,7 @@
 
 @layer utilities {
   .content {
-    @apply max-w-5xl mx-auto w-full;
+    @apply max-w-5xl mx-auto w-full sm:px-4 lg:px-8 xl:px-0;
   }
   .active {
     @apply after:content-[''] after:w-full after:rounded-full after:h-[2px] after:block after:dark:bg-slate-50 after:bg-slate-900;

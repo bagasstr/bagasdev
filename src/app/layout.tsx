@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${myFont.className} content`}>
+      <body className={`${myFont.className} content sm:px-4 lg:px-8`}>
         <ThemeProvider attribute='class' enableSystem={true}>
           <Navbar />
           {children}
