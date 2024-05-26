@@ -25,7 +25,7 @@ const Home = () => {
           <Link
             href={"/projects"}
             passHref
-            className='sm:px-4 sm:py-3 bg-black sm:rounded-lg'>
+            className='sm:px-4 sm:py-3 bg-black sm:rounded-lg dark:text-white'>
             <button>
               <p className='sm:text-lg sm:font-medium'>See Projects</p>
             </button>
@@ -33,7 +33,7 @@ const Home = () => {
           <Link
             href={"/about"}
             passHref
-            className='sm:px-4 sm:py-3 bg-black sm:rounded-lg'>
+            className='sm:px-4 sm:py-3 bg-black sm:rounded-lg dark:text-white'>
             <button>
               <p className='sm:text-lg sm:font-medium'>About</p>
             </button>
