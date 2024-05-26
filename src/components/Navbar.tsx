@@ -31,15 +31,16 @@ const Navbar = () => {
           <ul className='flex items-center justify-center sm:gap-x-8 lg:gap-10'>
             {dataLink.map((item, index) => (
               <li key={index}>
-                <Link
-                  href={item.link}
-                  passHref
-                  className={`${
-                    checkPath === item.link
-                      ? "after:content-[''] after:w-full after:rounded-full after:h-[2px] after:block after:dark:bg-slate-50 after:bg-slate-900"
-                      : ""
-                  } sm:text-lg sm:font-semibold lg:text-xl`}>
-                  {item.name}
+                <Link href={item.link} passHref>
+                  {checkPath === item.link ? (
+                    <span className='border-b-2 border-black sm:text-lg sm:font-semibold lg:text-xl pb-1'>
+                      {item.name}
+                    </span>
+                  ) : (
+                    <span className='sm:text-lg sm:font-semibold sm:text-white/85 lg:text-xl'>
+                      {item.name}
+                    </span>
+                  )}
                 </Link>
               </li>
             ))}

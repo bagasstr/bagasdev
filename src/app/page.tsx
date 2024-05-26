@@ -25,18 +25,14 @@ const Home = () => {
           <Link
             href={"/projects"}
             passHref
-            className='sm:px-4 sm:py-3 sm:rounded-lg dark:text-white border-2 dark:bg-black border-black text-black'>
-            <button>
-              <p className='sm:text-lg sm:font-medium'>See Projects</p>
-            </button>
+            className='sm:px-4 sm:py-3 sm:rounded-lg dark:text-white dark:border-2 dark:bg-black border-black text-black'>
+            <p className='sm:text-lg sm:font-medium'>See Projects</p>
           </Link>
           <Link
             href={"/about"}
             passHref
-            className='sm:px-4 sm:py-3 sm:rounded-lg dark:text-white border-2 dark:bg-black border-black text-black'>
-            <button>
-              <p className='sm:text-lg sm:font-medium'>About</p>
-            </button>
+            className='sm:px-4 sm:py-3 sm:rounded-lg dark:text-black dark:border-2 dark:bg-white border-black text-black'>
+            <p className='sm:text-lg sm:font-medium'>About</p>
           </Link>
         </div>
       </div>
