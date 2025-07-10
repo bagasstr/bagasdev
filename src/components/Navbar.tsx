@@ -2,14 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { memo, useMemo } from "react";
 
-const Navbar = () => {
+// Memoized Navbar component for better performance
+const Navbar = memo(() => {
   const pathName = usePathname();
-  const filterPath = pathName?.split("/").filter((item) => item);
+  
+  // Memoize path calculation to avoid recalculating on every render
+  const checkPath = useMemo(() => {
+    const filterPath = pathName?.split("/").filter((item) => item);
+    return "/" + (filterPath.length > 0 ? filterPath[0] : "");
+  }, [pathName]);
 
-  const checkPath = "/" + (filterPath.length > 0 ? filterPath[0] : "");
-
-  const dataLink = [
+  // Static data that doesn't change - can be moved outside component
+  const dataLink = useMemo(() => [
     {
       link: "/",
       name: "Home",
@@ -22,33 +28,35 @@ const Navbar = () => {
       link: "/about",
       name: "About",
     },
-  ];
+  ], []);
 
   return (
-    <>
-      <div className='py-8'>
-        <div className=''>
-          <ul className='flex items-center justify-center sm:gap-x-8 lg:gap-10'>
-            {dataLink.map((item, index) => (
-              <li key={index}>
-                <Link href={item.link} passHref>
-                  {checkPath === item.link ? (
-                    <span className='border-b-2 border-black dark:border-white text-black dark:text-white sm:text-lg sm:font-semibold lg:text-xl pb-1'>
-                      {item.name}
-                    </span>
-                  ) : (
-                    <span className='sm:text-lg sm:font-semibold text-black dark:text-white lg:text-xl'>
-                      {item.name}
-                    </span>
-                  )}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <nav className='py-8' role="navigation" aria-label="Main navigation">
+      <div>
+        <ul className='flex items-center justify-center sm:gap-x-8 lg:gap-10'>
+          {dataLink.map((item) => (
+            <li key={item.link}>
+              <Link 
+                href={item.link} 
+                className={`
+                  sm:text-lg sm:font-semibold text-black dark:text-white lg:text-xl transition-colors
+                  ${checkPath === item.link 
+                    ? 'border-b-2 border-black dark:border-white pb-1' 
+                    : 'hover:opacity-70'
+                  }
+                `}
+                aria-current={checkPath === item.link ? 'page' : undefined}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </>
+    </nav>
   );
-};
+});
+
+Navbar.displayName = 'Navbar';
 
 export default Navbar;
