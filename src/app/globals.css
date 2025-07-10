@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations */
+@layer base {
+  /* Font performance optimization */
+  @font-face {
+    font-family: 'SF Pro';
+    src: url('./fonts/SF-Pro.ttf') format('truetype');
+    font-display: swap; /* Improve font loading performance */
+    font-weight: 100 900; /* Support variable font weights */
+  }
+
+  /* Critical CSS for better CLS */
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-synthesis: none; /* Prevent synthetic bold/italic */
+    text-size-adjust: 100%; /* Prevent text size adjustment on mobile */
+  }
+
+  /* Performance critical utilities */
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 200px;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
 @layer utilities {
   .content {
     @apply max-w-5xl mx-auto w-full sm:px-4 lg:px-8 xl:px-0;
